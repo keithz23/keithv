@@ -57,12 +57,12 @@ const Navbar = () => {
     <header className="w-full h-20 flex items-center justify-center relative">
       <nav
         className={`
-          z-50 fixed left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out
+          z-50 fixed left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out origin-top
           
           ${
             isScrolled
-              ? "top-4 w-[94%] max-w-7xl rounded-3xl border border-blue-100 bg-white/85 px-3 py-2 shadow-lg shadow-blue-200/20 backdrop-blur-md md:top-5 md:rounded-full"
-              : "top-0 w-full max-w-7xl bg-transparent px-4 py-4 md:p-5"
+              ? "top-3 w-[90%] max-w-5xl scale-[0.96] rounded-3xl border border-blue-100 bg-white/90 p-4 shadow-lg shadow-blue-200/20 backdrop-blur-md md:top-4 md:rounded-full"
+              : "top-0 w-full max-w-7xl scale-100 bg-transparent px-4 py-4 md:p-5"
           }
         `}
       >
@@ -71,19 +71,19 @@ const Navbar = () => {
           <div
             className={`
             flex items-center justify-center rounded-full transition-all duration-500
-            ${isScrolled ? "bg-blue-600 p-2" : "bg-blue-50 p-2"}
+            ${isScrolled ? "bg-blue-600 p-1.5" : "bg-blue-50 p-2"}
           `}
           >
             <Globe
-              className={`w-5 h-5 transition-colors ${isScrolled ? "text-white" : "text-blue-600"}`}
+              className={`transition-all duration-500 ${isScrolled ? "h-4 w-4 text-white" : "h-5 w-5 text-blue-600"}`}
             />
           </div>
 
           {/* 2. Menu Links */}
           <ul
             className={`
-            hidden md:flex flex-1 items-center justify-center transition-all duration-500 px-2 gap-x-3 lg:gap-x-8 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
-            ${isScrolled ? "text-[11px] md:text-xs" : "text-xs md:text-sm"}
+            hidden md:flex flex-1 items-center justify-center transition-all duration-500 px-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+            ${isScrolled ? "gap-x-2 lg:gap-x-5 text-[11px] md:text-xs" : "gap-x-3 lg:gap-x-8 text-xs md:text-sm"}
           `}
           >
             {menuItems.map((item) => (
@@ -94,7 +94,7 @@ const Navbar = () => {
                 <button
                   type="button"
                   onClick={() => handleClick(item.id)}
-                  className={`cursor-pointer font-medium whitespace-nowrap transition-all px-2 py-1 rounded-md
+                  className={`cursor-pointer font-medium whitespace-nowrap transition-all rounded-md
                   ${
                     activeSection === item.id
                       ? isScrolled
@@ -104,6 +104,7 @@ const Navbar = () => {
                         ? "text-slate-600 hover:text-blue-600"
                         : "text-slate-500 hover:text-blue-600"
                   }
+                  ${isScrolled ? "p-2" : "px-2 py-1"}
                 `}
                 >
                   {item.label}
@@ -118,7 +119,7 @@ const Navbar = () => {
             hidden lg:flex rounded-full font-semibold transition-all duration-500 items-center justify-center whitespace-nowrap
             ${
               isScrolled
-                ? "bg-blue-600 text-white px-4 py-2 text-[10px] md:text-xs hover:bg-blue-700"
+                ? "bg-blue-600 text-white px-3 py-1.5 text-[10px] md:text-[11px] hover:bg-blue-700"
                 : "bg-blue-600 text-white px-6 py-2.5 text-sm shadow-md shadow-blue-200 hover:bg-blue-700 active:scale-95"
             }
           `}

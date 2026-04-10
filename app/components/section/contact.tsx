@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Mail, GitBranch, Send, MapPin } from "lucide-react";
+import { Mail, GitBranch, Send, MapPin, PhoneCall } from "lucide-react";
 
 export default function ContactSection() {
   return (
@@ -36,6 +36,21 @@ export default function ContactSection() {
                   <p className="font-medium text-slate-900">
                     vuong.tuankiet07979@gmail.com
                   </p>
+                </div>
+              </a>
+
+              <a
+                href="tel:0904346382"
+                className="group flex items-center gap-4 text-slate-600 hover:text-blue-600 transition-colors"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all">
+                  <PhoneCall className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                    Call me
+                  </p>
+                  <p className="font-medium text-slate-900">0904346382</p>
                 </div>
               </a>
 
