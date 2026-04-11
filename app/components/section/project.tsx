@@ -12,11 +12,11 @@ const projects = [
     image: "/project-1.jpg",
   },
   {
-    title: "Bluesky Clone",
+    title: "Bluesky Social",
     description:
       "A decentralized social media platform built with a focus on high-performance microservices and real-time user interactions.",
     tech: ["Next.js", "TypeScript", "Tailwind", "AWS"],
-    github: "#",
+    github: "https://github.com/keithz23/Bluesky-Social",
     demo: "#",
     image: "/project-2.jpg",
   },
@@ -25,7 +25,7 @@ const projects = [
     description:
       "A modern and scalable eCommerce platform designed for a seamless online shopping experience with optimized checkout flows.",
     tech: ["Next.js", "NestJS", "Tailwind", "AWS", "PostgreSQL"],
-    github: "#",
+    github: "https://github.com/keithz23/EcomGrove",
     demo: "#",
     image: "/project-3.jpg",
   },
@@ -95,6 +95,7 @@ export default function ProjectsSection() {
                 <div className="mt-8 pt-6 border-t border-slate-50 flex gap-6">
                   <a
                     href={project.github}
+                    target="_blank"
                     className="flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-slate-900 transition-colors"
                   >
                     <GitBranch className="w-4 h-4" />

@@ -24,7 +24,7 @@ export default function Home() {
           <ProjectsSection />
         </section>
 
-        <section id="contact" className="bg-white py-24">
+        <section id="contact">
           <ContactSection />
         </section>
       </main>

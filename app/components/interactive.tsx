@@ -89,7 +89,7 @@ const InteractiveHero = () => {
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div className="text-left">
             <span className="text-sm font-medium tracking-wider text-blue-600 uppercase">
-              Full-stack Developer
+              Web Developer
             </span>
 
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
@@ -104,13 +104,13 @@ const InteractiveHero = () => {
             </p>
 
             <div className="mt-8 flex items-center gap-4">
-              <button className="rounded-lg bg-slate-900 px-6 py-2.5 text-sm font-medium text-white transition-hover hover:bg-slate-800">
+              <button className="rounded-lg bg-slate-900 px-6 py-2.5 text-sm font-medium text-white transition-hover hover:bg-slate-800 cursor-pointer">
                 Let&apos;s Build
               </button>
               <button
                 type="button"
                 onClick={handleScrollToProjects}
-                className="rounded-lg border border-slate-200 px-6 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50"
+                className="rounded-lg border border-slate-200 px-6 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 cursor-pointer"
               >
                 View Work
               </button>

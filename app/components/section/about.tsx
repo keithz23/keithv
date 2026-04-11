@@ -30,7 +30,7 @@ export default function AboutSection() {
             </div>
 
             <p className="text-lg leading-relaxed text-slate-600">
-              Hi, I’m Kiet, I’m a Web Developer with 2 years of experience
+              I’m a Web Developer with 2 years of experience
               delivering high-quality websites and management systems. I focus
               on clean code and seamless user experiences.
             </p>
@@ -44,7 +44,7 @@ export default function AboutSection() {
               </div>
               <div className="h-8 w-px bg-slate-200" />
               <div>
-                <p className="text-2xl font-bold text-slate-900">10+</p>
+                <p className="text-2xl font-bold text-slate-900">5+</p>
                 <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
                   Projects
                 </p>
