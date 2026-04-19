@@ -120,7 +120,7 @@ const InteractiveHero = () => {
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative h-64 w-64 md:h-80 md:w-80 overflow-hidden rounded-2xl bg-slate-50 shadow-sm border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
               <Image
-                src="/window.svg"
+                src="/logo.png"
                 alt="Profile"
                 fill
                 className="object-contain p-8"
