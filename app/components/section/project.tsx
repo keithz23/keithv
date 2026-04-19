@@ -42,14 +42,14 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="bg-white py-24 border-t border-slate-100">
+    <section id="projects" className="bg-white py-24 border-t border-slate-100 dark:bg-slate-950 dark:border-slate-800">
       <div className="mx-auto w-full max-w-6xl px-8">
         {/* Header Section */}
         <div className="mb-16">
           <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">
             Selected Work
           </h2>
-          <h3 className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl">
+          <h3 className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl dark:text-slate-100">
             Featured Projects
           </h3>
           <div className="mt-4 h-1 w-12 bg-blue-600 rounded-full" />
@@ -60,11 +60,11 @@ export default function ProjectsSection() {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="group flex flex-col bg-white border border-slate-100 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-500"
+              className="group flex flex-col bg-white border border-slate-100 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-500 dark:bg-slate-900 dark:border-slate-800"
             >
               {/* Image Placeholder with Hover Effect */}
-              <div className="relative aspect-video bg-slate-50 overflow-hidden border-b border-slate-50">
-                <div className="absolute inset-0 flex items-center justify-center text-slate-300 text-xs font-mono tracking-widest">
+              <div className="relative aspect-video bg-slate-50 overflow-hidden border-b border-slate-50 dark:bg-slate-950 dark:border-slate-800">
+                <div className="absolute inset-0 flex items-center justify-center text-slate-300 text-xs font-mono tracking-widest dark:text-slate-600">
                   // {project.title.toUpperCase()} _IMAGE
                 </div>
                 <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/2 transition-colors duration-500" />
@@ -76,34 +76,34 @@ export default function ProjectsSection() {
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded border border-slate-100 group-hover:border-blue-100 group-hover:text-blue-500 transition-colors"
+                      className="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-50 px-2 py-1 rounded border border-slate-100 group-hover:border-blue-100 group-hover:text-blue-500 transition-colors dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:group-hover:border-blue-500/40 dark:group-hover:text-blue-400"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
 
-                <h4 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                <h4 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors dark:text-slate-100 dark:group-hover:text-blue-400">
                   {project.title}
                 </h4>
 
-                <p className="mt-4 text-slate-500 leading-relaxed text-sm md:text-base">
+                <p className="mt-4 text-slate-500 leading-relaxed text-sm md:text-base dark:text-slate-300">
                   {project.description}
                 </p>
 
                 {/* Footer Links */}
-                <div className="mt-8 pt-6 border-t border-slate-50 flex gap-6">
+                <div className="mt-8 pt-6 border-t border-slate-50 flex gap-6 dark:border-slate-800">
                   <a
                     href={project.github}
                     target="_blank"
-                    className="flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-slate-900 transition-colors"
+                    className="flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-slate-900 transition-colors dark:text-slate-300 dark:hover:text-slate-100"
                   >
                     <GitBranch className="w-4 h-4" />
                     GITHUB
                   </a>
                   <a
                     href={project.demo}
-                    className="flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors"
+                    className="flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors dark:text-blue-400 dark:hover:text-blue-300"
                   >
                     <ExternalLink className="w-4 h-4" />
                     LIVE PREVIEW

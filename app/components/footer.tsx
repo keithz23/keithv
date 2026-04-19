@@ -23,7 +23,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-300">
+    <footer className="bg-slate-900 text-slate-300 dark:bg-slate-950 dark:text-slate-300">
       <div className="mx-auto max-w-6xl px-6 py-16 md:px-10 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand / Description */}
@@ -92,7 +92,7 @@ export default function Footer() {
                     key={social.label}
                     href={social.url}
                     aria-label={social.label}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-400 transition-all hover:bg-blue-600 hover:text-white"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-400 transition-all hover:bg-blue-600 hover:text-white dark:bg-slate-900 dark:text-slate-400"
                   >
                     <Icon className="h-5 w-5" />
                   </a>
@@ -103,7 +103,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="my-12 border-t border-slate-800" />
+        <div className="my-12 border-t border-slate-800 dark:border-slate-700" />
 
         {/* Copyright */}
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">

@@ -8,11 +8,11 @@ import BackToTop from "./components/back-to-top";
 
 export default function Home() {
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <Navbar />
 
       <main>
-        <section id="home" className="bg-white">
+        <section id="home" className="bg-white dark:bg-slate-950">
           <InteractiveHero />
         </section>
 

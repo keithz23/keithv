@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Globe, Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const menuItems = [
   { label: "Home", id: "home" },
@@ -13,6 +14,12 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +60,13 @@ const Navbar = () => {
     }
   };
 
+  const toggleTheme = () => {
+    const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+  };
+
+  const isDarkMode = mounted && resolvedTheme === "dark";
+
   return (
     <header className="w-full h-20 flex items-center justify-center relative">
       <nav
@@ -61,7 +75,7 @@ const Navbar = () => {
           
           ${
             isScrolled
-              ? "top-3 w-[90%] max-w-5xl scale-[0.96] rounded-3xl border border-blue-100 bg-white/90 p-4 shadow-lg shadow-blue-200/20 backdrop-blur-md md:top-4 md:rounded-full"
+              ? "top-3 w-[90%] max-w-5xl scale-[0.96] rounded-3xl border border-blue-100 bg-white/90 p-4 shadow-lg shadow-blue-200/20 backdrop-blur-md md:top-4 md:rounded-full dark:border-slate-700/70 dark:bg-slate-900/85 dark:shadow-slate-900/40"
               : "top-0 w-full max-w-7xl scale-100 bg-transparent px-4 py-4 md:p-5"
           }
         `}
@@ -70,13 +84,11 @@ const Navbar = () => {
           {/* 1. Logo/Icon */}
           <div
             className={`
-            flex items-center justify-center rounded-full transition-all duration-500
-            ${isScrolled ? "bg-blue-600 p-1.5" : "bg-blue-50 p-2"}
+            whitespace-nowrap font-extrabold tracking-tight transition-all duration-500
+            ${isScrolled ? "text-slate-900 dark:text-slate-100 text-sm" : "text-slate-900 dark:text-slate-100 text-base md:text-2xl"}
           `}
           >
-            <Globe
-              className={`transition-all duration-500 ${isScrolled ? "h-4 w-4 text-white" : "h-5 w-5 text-blue-600"}`}
-            />
+            KEITHV // DEV
           </div>
 
           {/* 2. Menu Links */}
@@ -101,8 +113,8 @@ const Navbar = () => {
                         ? "bg-blue-600 text-white"
                         : "text-blue-600 font-semibold"
                       : isScrolled
-                        ? "text-slate-600 hover:text-blue-600"
-                        : "text-slate-500 hover:text-blue-600"
+                        ? "text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+                        : "text-slate-500 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
                   }
                   ${isScrolled ? "p-2" : "px-2 py-1"}
                 `}
@@ -114,33 +126,55 @@ const Navbar = () => {
           </ul>
 
           {/* 3. Action Button / Email */}
-          <div
-            className={`
-            hidden lg:flex rounded-full font-semibold transition-all duration-500 items-center justify-center whitespace-nowrap
-            ${
-              isScrolled
-                ? "bg-blue-600 text-white px-3 py-1.5 text-[10px] md:text-[11px] hover:bg-blue-700"
-                : "bg-blue-600 text-white px-6 py-2.5 text-sm shadow-md shadow-blue-200 hover:bg-blue-700 active:scale-95"
-            }
-          `}
-          >
-            {isScrolled ? "vuong.tuankiet07979@gmail.com" : "Contact Me"}
+          <div className="hidden lg:flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-blue-100 bg-white/90 text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-200"
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+
+            <div
+              className={`
+              rounded-full font-semibold transition-all duration-500 items-center justify-center whitespace-nowrap
+              ${
+                isScrolled
+                  ? "bg-blue-600 text-white px-3 py-1.5 text-[10px] md:text-[11px] hover:bg-blue-700"
+                  : "bg-blue-600 text-white px-6 py-2.5 text-sm shadow-md shadow-blue-200 hover:bg-blue-700 active:scale-95"
+              }
+            `}
+            >
+              {isScrolled ? "vuong.tuankiet07979@gmail.com" : "Contact Me"}
+            </div>
           </div>
 
           {/* 4. Mobile Menu Toggle */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-blue-100 bg-white/90 text-blue-600 shadow-sm"
-            aria-label="Toggle menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-blue-100 bg-white/90 text-slate-600 shadow-sm transition-colors hover:bg-blue-50 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-200"
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-blue-100 bg-white/90 text-blue-600 shadow-sm dark:border-slate-700 dark:bg-slate-900/90 dark:text-blue-400"
+              aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 rounded-2xl border border-blue-100 bg-white/95 p-2 shadow-md backdrop-blur-sm">
+          <div className="md:hidden mt-3 rounded-2xl border border-blue-100 bg-white/95 p-2 shadow-md backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/95">
             <ul className="space-y-1">
               {menuItems.map((item) => (
                 <li key={item.id}>
@@ -151,7 +185,7 @@ const Navbar = () => {
                       ${
                         activeSection === item.id
                           ? "bg-blue-600 text-white"
-                          : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+                          : "text-slate-600 hover:bg-blue-50 hover:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
                       }
                     `}
                   >

@@ -64,7 +64,7 @@ const InteractiveHero = () => {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden bg-white py-16"
+      className="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden bg-white py-16 dark:bg-slate-950"
     >
       <div
         className="absolute inset-0 z-0 opacity-20"
@@ -92,25 +92,25 @@ const InteractiveHero = () => {
               Web Developer
             </span>
 
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-slate-100">
               Crafting Visuals.
               <br />
               <span className="text-blue-600">Defining Logic.</span>
             </h1>
 
-            <p className="mt-6 max-w-md text-base text-slate-500 leading-relaxed">
+            <p className="mt-6 max-w-md text-base text-slate-500 leading-relaxed dark:text-slate-300">
               Hi, I&apos;m Keith. I build clean, efficient web products with a
               focus on user experience and performance.
             </p>
 
             <div className="mt-8 flex items-center gap-4">
-              <button className="rounded-lg bg-slate-900 px-6 py-2.5 text-sm font-medium text-white transition-hover hover:bg-slate-800 cursor-pointer">
+              <button className="rounded-lg bg-slate-900 px-6 py-2.5 text-sm font-medium text-white transition-hover hover:bg-slate-800 cursor-pointer dark:bg-blue-600 dark:hover:bg-blue-700">
                 Let&apos;s Build
               </button>
               <button
                 type="button"
                 onClick={handleScrollToProjects}
-                className="rounded-lg border border-slate-200 px-6 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 cursor-pointer"
+                className="rounded-lg border border-slate-200 px-6 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 cursor-pointer dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 View Work
               </button>
@@ -118,7 +118,7 @@ const InteractiveHero = () => {
           </div>
 
           <div className="relative flex justify-center lg:justify-end">
-            <div className="relative h-64 w-64 md:h-80 md:w-80 overflow-hidden rounded-2xl bg-slate-50 shadow-sm border border-slate-100">
+            <div className="relative h-64 w-64 md:h-80 md:w-80 overflow-hidden rounded-2xl bg-slate-50 shadow-sm border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
               <Image
                 src="/window.svg"
                 alt="Profile"
@@ -128,10 +128,10 @@ const InteractiveHero = () => {
               />
             </div>
 
-            <div className="absolute -bottom-3 right-0 md:right-4 rounded-full bg-white border border-slate-100 px-4 py-1.5 shadow-sm">
+            <div className="absolute -bottom-3 right-0 md:right-4 rounded-full bg-white border border-slate-100 px-4 py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-700">
               <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs font-medium text-slate-600">
+                <span className="text-xs font-medium text-slate-600 dark:text-slate-200">
                   Available to work
                 </span>
               </div>

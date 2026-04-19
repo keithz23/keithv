@@ -40,7 +40,7 @@ const GithubIcon = ({ className }: { className?: string }) => (
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="bg-white py-24 border-t border-slate-100">
+    <section id="contact" className="bg-white py-24 border-t border-slate-100 dark:bg-slate-950 dark:border-slate-800">
       <div className="mx-auto w-full max-w-6xl px-8">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
           <div className="space-y-8">
@@ -48,10 +48,10 @@ export default function ContactSection() {
               <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">
                 Contact
               </h2>
-              <h3 className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl">
+              <h3 className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl dark:text-slate-100">
                 Let&apos;s work together.
               </h3>
-              <p className="mt-4 text-lg text-slate-500 max-w-sm">
+              <p className="mt-4 text-lg text-slate-500 max-w-sm dark:text-slate-300">
                 I&apos;m currently available for new projects and opportunities.
                 Let&apos;s build something amazing.
               </p>
@@ -60,16 +60,16 @@ export default function ContactSection() {
             <div className="space-y-6">
               <a
                 href="mailto:vuong.tuankiet07979@gmail.com"
-                className="group flex items-center gap-4 text-slate-600 hover:text-blue-600 transition-colors"
+                className="group flex items-center gap-4 text-slate-600 hover:text-blue-600 transition-colors dark:text-slate-300 dark:hover:text-blue-400"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all dark:bg-slate-900 dark:text-slate-400 dark:group-hover:bg-slate-800 dark:group-hover:text-blue-400">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
                     Email Me
                   </p>
-                  <p className="font-medium text-slate-900">
+                  <p className="font-medium text-slate-900 dark:text-slate-100">
                     vuong.tuankiet07979@gmail.com
                   </p>
                 </div>
@@ -77,28 +77,28 @@ export default function ContactSection() {
 
               <a
                 href="tel:0904346382"
-                className="group flex items-center gap-4 text-slate-600 hover:text-blue-600 transition-colors"
+                className="group flex items-center gap-4 text-slate-600 hover:text-blue-600 transition-colors dark:text-slate-300 dark:hover:text-blue-400"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all dark:bg-slate-900 dark:text-slate-400 dark:group-hover:bg-slate-800 dark:group-hover:text-blue-400">
                   <PhoneCall className="h-5 w-5" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
                     Call me
                   </p>
-                  <p className="font-medium text-slate-900">0904346382</p>
+                  <p className="font-medium text-slate-900 dark:text-slate-100">0904346382</p>
                 </div>
               </a>
 
-              <div className="flex items-center gap-4 text-slate-600">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400">
+              <div className="flex items-center gap-4 text-slate-600 dark:text-slate-300">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 dark:bg-slate-900 dark:text-slate-400">
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
                     Location
                   </p>
-                  <p className="font-medium text-slate-900">
+                  <p className="font-medium text-slate-900 dark:text-slate-100">
                     Ho Chi Minh City, Vietnam
                   </p>
                 </div>
@@ -121,7 +121,7 @@ export default function ContactSection() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all dark:border-slate-700 dark:text-slate-400 dark:hover:border-blue-400 dark:hover:text-blue-400 dark:hover:bg-slate-900"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -131,7 +131,7 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="bg-slate-50/50 p-8 rounded-3xl border border-slate-100">
+          <div className="bg-slate-50/50 p-8 rounded-3xl border border-slate-100 dark:bg-slate-900/80 dark:border-slate-800">
             <form className="space-y-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
@@ -141,7 +141,7 @@ export default function ContactSection() {
                   <input
                     type="text"
                     placeholder="Enter your name"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
                   />
                 </div>
                 <div className="space-y-2">
@@ -151,7 +151,7 @@ export default function ContactSection() {
                   <input
                     type="email"
                     placeholder="example@mail.com"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
                   />
                 </div>
               </div>
@@ -162,12 +162,12 @@ export default function ContactSection() {
                 <textarea
                   rows={4}
                   placeholder="Tell me about your project..."
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm resize-none dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-700 active:scale-[0.98] transition-all shadow-lg shadow-blue-200"
+                className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-700 active:scale-[0.98] transition-all shadow-lg shadow-blue-200 dark:shadow-blue-950/50"
               >
                 <Send className="w-4 h-4" />
                 SEND MESSAGE
