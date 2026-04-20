@@ -142,7 +142,7 @@ const Navbar = () => {
               ${
                 isScrolled
                   ? "bg-blue-600 text-white px-3 py-1.5 text-[10px] md:text-[11px] hover:bg-blue-700"
-                  : "bg-blue-600 text-white px-6 py-2.5 text-sm shadow-md shadow-blue-200 hover:bg-blue-700 active:scale-95"
+                  : "bg-blue-600 text-white px-6 py-2.5 text-sm shadow-blue-200 hover:bg-blue-700 active:scale-95"
               }
             `}
             >

@@ -89,7 +89,7 @@ const InteractiveHero = () => {
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div className="text-left">
             <span className="text-sm font-medium tracking-wider text-blue-600 uppercase">
-              Web Developer
+              Full-stack Developer
             </span>
 
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-slate-100">

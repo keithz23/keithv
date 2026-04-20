@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tuan Kiet Vuong - Web Developer",
+  title: "Keith Vuong - Full-stack Developer",
   description:
-    "I’m a Web Developer with 2 years of experience delivering high-quality websites and management systems. I focus on clean code and seamless user experiences.",
+    "I’m a Full-stack Developer with 2 years of experience delivering high-quality websites and management systems. I focus on clean code and seamless user experiences.",
 };
 
 export default function RootLayout({
@@ -41,7 +41,12 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>
