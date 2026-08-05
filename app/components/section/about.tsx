@@ -158,7 +158,7 @@ export default function AboutSection() {
                 Ho Chi Minh City University of Technology and Education
               </p>
               <p className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400">
-                <Stack size={15} weight="regular" /> Software Engineering · 2019—2023
+                <Stack size={15} weight="regular" /> Software Engineering
               </p>
             </div>
           </article>
