@@ -1,146 +1,95 @@
 "use client";
-import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
 
-type Point = { x: number; y: number };
+import { ArrowDownRight, ArrowUpRight, MapPin, TerminalWindow } from "@phosphor-icons/react";
+import { motion, useMotionValue, useSpring } from "motion/react";
+import type { MouseEvent, ReactNode } from "react";
 
-const InteractiveHero = () => {
-  const [mousePos, setMousePos] = useState<Point>({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLElement | null>(null);
-  const currentPosRef = useRef<Point>({ x: 0, y: 0 });
-  const targetPosRef = useRef<Point>({ x: 0, y: 0 });
-  const rafRef = useRef<number | null>(null);
+function MagneticButton({ children, onClick, secondary = false }: { children: ReactNode; onClick: () => void; secondary?: boolean }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 160, damping: 18 });
+  const springY = useSpring(y, { stiffness: 160, damping: 18 });
 
-  useEffect(() => {
-    const setCenterPoint = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const center = { x: rect.width / 2, y: rect.height / 2 };
-      currentPosRef.current = center;
-      targetPosRef.current = center;
-      setMousePos(center);
-    };
-
-    const animate = () => {
-      const current = currentPosRef.current;
-      const target = targetPosRef.current;
-      const next = {
-        x: current.x + (target.x - current.x) * 0.1,
-        y: current.y + (target.y - current.y) * 0.1,
-      };
-      currentPosRef.current = next;
-      setMousePos(next);
-      rafRef.current = window.requestAnimationFrame(animate);
-    };
-
-    setCenterPoint();
-    window.addEventListener("resize", setCenterPoint);
-    rafRef.current = window.requestAnimationFrame(animate);
-
-    return () => {
-      window.removeEventListener("resize", setCenterPoint);
-      if (rafRef.current !== null) window.cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      targetPosRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      };
-    }
+  const move = (event: MouseEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    x.set((event.clientX - rect.left - rect.width / 2) * 0.16);
+    y.set((event.clientY - rect.top - rect.height / 2) * 0.16);
   };
 
-  const handleScrollToProjects = () => {
-    const projectsSection = document.getElementById("projects");
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  const reset = () => { x.set(0); y.set(0); };
 
   return (
-    <section
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden bg-white py-16 dark:bg-slate-950"
+    <motion.button
+      type="button"
+      onClick={onClick}
+      onMouseMove={move}
+      onMouseLeave={reset}
+      style={{ x: springX, y: springY }}
+      className={secondary ? "button-secondary" : "button-primary"}
     >
-      <div
-        className="absolute inset-0 z-0 opacity-20"
-        style={{
-          backgroundImage: `radial-gradient(#3b82f6 0.5px, transparent 0.5px)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
+      {children}
+    </motion.button>
+  );
+}
 
-      <div
-        className="absolute pointer-events-none inset-0 z-10"
-        style={{
-          background: `radial-gradient(
-            400px circle at ${mousePos.x}px ${mousePos.y}px,
-            rgba(59, 130, 246, 0.08),
-            transparent 80%
-          )`,
-        }}
-      />
+const principles = ["Secure by default", "Fast under load", "Clear to maintain"];
 
-      <div className="relative z-20 w-full max-w-6xl px-6">
-        <div className="grid items-center gap-12 md:grid-cols-2">
-          <div className="text-left">
-            <span className="text-sm font-medium tracking-wider text-blue-600 uppercase">
-              Full-stack Developer
-            </span>
+export default function InteractiveHero() {
+  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-slate-100">
-              Crafting Visuals.
-              <br />
-              <span className="text-blue-600">Defining Logic.</span>
-            </h1>
-
-            <p className="mt-6 max-w-md text-base text-slate-500 leading-relaxed dark:text-slate-300">
-              Hi, I&apos;m Keith. I build clean, efficient web products with a
-              focus on user experience and performance.
-            </p>
-
-            <div className="mt-8 flex items-center gap-4">
-              <button className="rounded-lg bg-slate-900 px-6 py-2.5 text-sm font-medium text-white transition-hover hover:bg-slate-800 cursor-pointer dark:bg-blue-600 dark:hover:bg-blue-700">
-                Let&apos;s Build
-              </button>
-              <button
-                type="button"
-                onClick={handleScrollToProjects}
-                className="rounded-lg border border-slate-200 px-6 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 cursor-pointer dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
-              >
-                View Work
-              </button>
-            </div>
+  return (
+    <section className="hero-surface relative min-h-[calc(100dvh-5rem)] overflow-hidden pb-24 pt-16 md:pb-28 md:pt-20">
+      <div className="mx-auto grid w-full max-w-7xl gap-16 px-4 sm:px-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,.65fr)] lg:items-end lg:px-10">
+        <div className="relative">
+          <div className="stagger-item mb-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-zinc-500 dark:text-zinc-400">
+            <span className="status-line"><span className="status-dot" /> Available for selected opportunities</span>
+            <span className="inline-flex items-center gap-1.5"><MapPin size={15} weight="bold" /> Ho Chi Minh City, Vietnam</span>
           </div>
 
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="relative h-64 w-64 md:h-80 md:w-80 overflow-hidden rounded-2xl bg-slate-50 shadow-sm border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
-              <Image
-                src="/logo.png"
-                alt="Profile"
-                fill
-                className="object-contain p-8"
-                priority
-              />
-            </div>
+          <p className="stagger-item section-index">Full-stack developer / 2026</p>
+          <h1 className="stagger-item mt-5 max-w-[13ch] text-balance text-5xl font-semibold leading-[.94] tracking-[-0.065em] text-zinc-950 sm:text-6xl md:text-7xl dark:text-zinc-50">
+            Product-minded engineering, from interface to infrastructure.
+          </h1>
+          <p className="stagger-item mt-8 max-w-[61ch] text-pretty text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+            I&apos;m Keith Vuong. I build secure APIs, responsive interfaces, and cloud-ready systems for products that need to work clearly and reliably—not just look finished.
+          </p>
 
-            <div className="absolute -bottom-3 right-0 md:right-4 rounded-full bg-white border border-slate-100 px-4 py-1.5 shadow-sm dark:bg-slate-900 dark:border-slate-700">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs font-medium text-slate-600 dark:text-slate-200">
-                  Available to work
-                </span>
-              </div>
+          <div className="stagger-item mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <MagneticButton onClick={() => go("projects")}>View selected work <ArrowDownRight size={17} weight="bold" /></MagneticButton>
+            <MagneticButton secondary onClick={() => go("contact")}>Discuss a project <ArrowUpRight size={17} weight="bold" /></MagneticButton>
+          </div>
+        </div>
+
+        <aside className="stagger-item lg:mb-2 lg:border-l lg:border-zinc-200 lg:pl-8 dark:lg:border-zinc-800" aria-label="Engineering profile">
+          <div className="flex items-center justify-between border-b border-zinc-200 pb-4 dark:border-zinc-800">
+            <span className="section-index">Working profile</span>
+            <TerminalWindow size={21} weight="duotone" className="text-blue-600 dark:text-blue-400" />
+          </div>
+          <div className="divide-y divide-zinc-200 dark:divide-zinc-800">
+            <div className="py-6">
+              <p className="font-mono text-[10px] uppercase tracking-[.2em] text-zinc-400">Current role</p>
+              <p className="mt-2 font-medium text-zinc-900 dark:text-zinc-100">Full-stack Developer</p>
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Sea Dragon Technology · Apr 2024—Now</p>
+            </div>
+            <div className="py-6">
+              <p className="font-mono text-[10px] uppercase tracking-[.2em] text-zinc-400">Core stack</p>
+              <p className="mt-2 text-sm leading-6 text-zinc-700 dark:text-zinc-300">Next.js / NestJS / PostgreSQL / Redis / AWS</p>
+            </div>
+            <div className="py-6">
+              <p className="font-mono text-[10px] uppercase tracking-[.2em] text-zinc-400">Build principles</p>
+              <ul className="mt-3 space-y-2.5">
+                {principles.map((principle, index) => <li key={principle} className="flex items-center gap-3 text-sm text-zinc-700 dark:text-zinc-300"><span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">0{index + 1}</span>{principle}</li>)}
+              </ul>
             </div>
           </div>
+        </aside>
+      </div>
+
+      <div className="marquee mt-20 border-y border-zinc-200 bg-white/55 py-3 dark:border-zinc-800 dark:bg-zinc-950/40" aria-hidden="true">
+        <div className="marquee-track font-mono text-[10px] uppercase tracking-[.24em] text-zinc-400">
+          <span>Next.js</span><span>API design</span><span>Real-time systems</span><span>Redis</span><span>AWS delivery</span><span>Next.js</span><span>API design</span><span>Real-time systems</span><span>Redis</span><span>AWS delivery</span>
         </div>
       </div>
     </section>
   );
-};
-
-export default InteractiveHero;
+}

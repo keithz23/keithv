@@ -1,179 +1,64 @@
 "use client";
-import { Mail, Send, MapPin, PhoneCall } from "lucide-react";
 
-const LinkedinIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
+import { FormEvent, useState } from "react";
+import { ArrowUpRight, Briefcase, Code, EnvelopeSimple, MapPin, PaperPlaneTilt } from "@phosphor-icons/react";
 
-const GithubIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
+type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
 export default function ContactSection() {
+  const [errors, setErrors] = useState<FieldErrors>({});
+
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get("name") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+    const message = String(form.get("message") ?? "").trim();
+    const nextErrors: FieldErrors = {};
+
+    if (name.length < 2) nextErrors.name = "Please enter at least two characters.";
+    if (!/^\S+@\S+\.\S+$/.test(email)) nextErrors.email = "Enter a valid email address.";
+    if (message.length < 20) nextErrors.message = "Add a little more context—at least 20 characters.";
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length) return;
+
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+    const body = encodeURIComponent(`Hi Keith,\n\n${message}\n\nFrom: ${name} (${email})`);
+    window.location.href = `mailto:vuong.tuankiet07979@gmail.com?subject=${subject}&body=${body}`;
+  };
+
   return (
-    <section id="contact" className="bg-white py-24 border-t border-slate-100 dark:bg-slate-950 dark:border-slate-800">
-      <div className="mx-auto w-full max-w-6xl px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">
-                Contact
-              </h2>
-              <h3 className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl dark:text-slate-100">
-                Let&apos;s work together.
-              </h3>
-              <p className="mt-4 text-lg text-slate-500 max-w-sm dark:text-slate-300">
-                I&apos;m currently available for new projects and opportunities.
-                Let&apos;s build something amazing.
-              </p>
+    <section id="contact" className="section-shell border-t border-zinc-200 bg-zinc-100/70 dark:border-zinc-800 dark:bg-zinc-900/40">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-8 lg:px-10">
+        <header className="grid gap-8 lg:grid-cols-[.58fr_1.42fr] lg:gap-20">
+          <p className="section-index">03 / Contact</p>
+          <h2 className="section-title max-w-[13ch]">Bring the problem. We&apos;ll find the useful next step.</h2>
+        </header>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-[.58fr_1.42fr] lg:gap-20">
+          <aside>
+            <p className="max-w-sm leading-7 text-zinc-600 dark:text-zinc-400">Share what you&apos;re building, what feels stuck, or what success should look like. I&apos;ll reply with a concrete next step.</p>
+            <div className="mt-9 divide-y divide-zinc-300 border-y border-zinc-300 dark:divide-zinc-700 dark:border-zinc-700">
+              <a href="mailto:vuong.tuankiet07979@gmail.com" className="contact-row"><EnvelopeSimple size={19} weight="duotone" /><span><small>Email</small>vuong.tuankiet07979@gmail.com</span><ArrowUpRight size={15} weight="bold" className="ml-auto" /></a>
+              <div className="contact-row"><MapPin size={19} weight="duotone" /><span><small>Location</small>Ho Chi Minh City, Vietnam</span></div>
             </div>
-
-            <div className="space-y-6">
-              <a
-                href="mailto:vuong.tuankiet07979@gmail.com"
-                className="group flex items-center gap-4 text-slate-600 hover:text-blue-600 transition-colors dark:text-slate-300 dark:hover:text-blue-400"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all dark:bg-slate-900 dark:text-slate-400 dark:group-hover:bg-slate-800 dark:group-hover:text-blue-400">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                    Email Me
-                  </p>
-                  <p className="font-medium text-slate-900 dark:text-slate-100">
-                    vuong.tuankiet07979@gmail.com
-                  </p>
-                </div>
-              </a>
-
-              <a
-                href="tel:0904346382"
-                className="group flex items-center gap-4 text-slate-600 hover:text-blue-600 transition-colors dark:text-slate-300 dark:hover:text-blue-400"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all dark:bg-slate-900 dark:text-slate-400 dark:group-hover:bg-slate-800 dark:group-hover:text-blue-400">
-                  <PhoneCall className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                    Call me
-                  </p>
-                  <p className="font-medium text-slate-900 dark:text-slate-100">0904346382</p>
-                </div>
-              </a>
-
-              <div className="flex items-center gap-4 text-slate-600 dark:text-slate-300">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-slate-400 dark:bg-slate-900 dark:text-slate-400">
-                  <MapPin className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                    Location
-                  </p>
-                  <p className="font-medium text-slate-900 dark:text-slate-100">
-                    Ho Chi Minh City, Vietnam
-                  </p>
-                </div>
-              </div>
+            <div className="mt-6 flex gap-2">
+              <a href="https://github.com/keithz23" target="_blank" rel="noreferrer" aria-label="GitHub" className="icon-button"><Code size={18} weight="bold" /></a>
+              <a href="https://www.linkedin.com/in/keithivers/" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="icon-button"><Briefcase size={18} weight="bold" /></a>
             </div>
+          </aside>
 
-            <div className="flex gap-4">
-              {[
-                {
-                  icon: GithubIcon,
-                  href: "https://github.com/keithz23",
-                  label: "GitHub",
-                },
-                {
-                  icon: LinkedinIcon,
-                  href: "https://www.linkedin.com/in/keithivers/",
-                  label: "LinkedIn",
-                },
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all dark:border-slate-700 dark:text-slate-400 dark:hover:border-blue-400 dark:hover:text-blue-400 dark:hover:bg-slate-900"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
+          <form onSubmit={submit} noValidate className="border-t border-zinc-900 pt-7 dark:border-zinc-100">
+            <div className="grid gap-7 sm:grid-cols-2">
+              <label className="field-label">Your name<input name="name" autoComplete="name" placeholder="How should I address you?" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} className="field-input" />{errors.name && <span id="name-error" className="field-error">{errors.name}</span>}</label>
+              <label className="field-label">Email address<input name="email" type="email" autoComplete="email" placeholder="you@company.com" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "email-error" : undefined} className="field-input" />{errors.email && <span id="email-error" className="field-error">{errors.email}</span>}</label>
             </div>
-          </div>
-
-          <div className="bg-slate-50/50 p-8 rounded-3xl border border-slate-100 dark:bg-slate-900/80 dark:border-slate-800">
-            <form className="space-y-6">
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="example@mail.com"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">
-                  Message
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="Tell me about your project..."
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-sm resize-none dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-700 active:scale-[0.98] transition-all shadow-lg shadow-blue-200 dark:shadow-blue-950/50"
-              >
-                <Send className="w-4 h-4" />
-                SEND MESSAGE
-              </button>
-            </form>
-          </div>
+            <label className="field-label mt-7">Project or opportunity<textarea name="message" rows={6} placeholder="A little context goes a long way..." aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : "message-help"} className="field-input resize-none" />{errors.message ? <span id="message-error" className="field-error">{errors.message}</span> : <span id="message-help" className="field-helper">Include the goal, current stage, and any technical constraints.</span>}</label>
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <button type="submit" className="button-primary">Prepare email <PaperPlaneTilt size={17} weight="bold" /></button>
+              <p className="max-w-xs text-xs leading-5 text-zinc-500 dark:text-zinc-400">Your information stays in your browser. The button opens your email application.</p>
+            </div>
+          </form>
         </div>
       </div>
     </section>

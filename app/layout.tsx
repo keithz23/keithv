@@ -1,25 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Keith Vuong - Full-stack Developer",
-  description:
-    "I’m a Full-stack Developer with 2 years of experience delivering high-quality websites and management systems. I focus on clean code and seamless user experiences.",
+  title: "Keith Vuong — Full-stack Developer",
+  description: "Full-stack developer in Ho Chi Minh City building secure APIs, real-time experiences, and reliable web products with Next.js, NestJS, Redis, and AWS.",
+  keywords: ["Keith Vuong", "Full-stack Developer", "Next.js Developer", "Web Developer Vietnam"],
+  openGraph: { title: "Keith Vuong — Full-stack Developer", description: "Secure APIs, real-time experiences, and reliable web products built with Next.js, NestJS, Redis, and AWS.", type: "website", locale: "en_US" },
 };
 
 export default function RootLayout({
@@ -28,18 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn(
-        "h-full",
-        "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        inter.variable,
-      )}
-    >
+    <html lang="en" suppressHydrationWarning className={`${geist.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <ThemeProvider
           attribute="class"

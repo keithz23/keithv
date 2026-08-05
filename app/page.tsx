@@ -8,25 +8,18 @@ import BackToTop from "./components/back-to-top";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen overflow-x-clip bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Navbar />
 
-      <main>
-        <section id="home" className="bg-white dark:bg-slate-950">
+      <main id="main-content">
+        <section id="home" className="scroll-mt-20 bg-white dark:bg-zinc-950">
           <InteractiveHero />
         </section>
 
-        <section id="about">
-          <AboutSection />
-        </section>
-
-        <section id="projects">
-          <ProjectsSection />
-        </section>
-
-        <section id="contact">
-          <ContactSection />
-        </section>
+        <AboutSection />
+        <ProjectsSection />
+        <ContactSection />
       </main>
 
       <Footer />

@@ -1,181 +1,167 @@
-"use client";
+import {
+  ArrowUpRight,
+  Check,
+  GraduationCap,
+  Stack,
+  SuitcaseSimple,
+} from "@phosphor-icons/react/dist/ssr";
 
-const techStack = [
+const capabilities = [
   {
-    category: "Frontend",
-    items: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    index: "01",
+    title: "Interface engineering",
+    detail:
+      "Next.js, React, TypeScript, responsive systems, SSR, and API integration.",
   },
   {
-    category: "Backend",
-    items: ["Java", "Spring Boot", "NestJS", "Node.js", "Prisma"],
+    index: "02",
+    title: "Backend architecture",
+    detail:
+      "NestJS, Node.js, REST, WebSocket, API versioning, JWT, OAuth, and RBAC.",
   },
-  { category: "Database", items: ["PostgreSQL", "MySQL", "MongoDB", "Redis"] },
   {
-    category: "Cloud & DevOps",
-    items: ["AWS (SAA)", "Docker", "Terraform", "GitHub Actions"],
+    index: "03",
+    title: "Data & performance",
+    detail:
+      "PostgreSQL, MySQL, MongoDB, Redis, indexing, pagination, and query tuning.",
+  },
+  {
+    index: "04",
+    title: "Cloud delivery",
+    detail:
+      "AWS, Docker, CI/CD, GitHub Actions, production logs, and operational debugging.",
   },
 ];
 
-const education = [
-  {
-    degree: "Bachelor of Information Technology",
-    school: "HCM University of Technology and Egineering",
-    major: "Software Engineering",
-    period: "2019 - 2023",
-    status: "Completed",
-  },
-];
-
-const experiences = [
-  {
-    role: "Web Developer",
-    company: "Sea Dragon Technology LLC",
-    period: "2024-Present",
-    type: "Contract",
-    summary:
-      "Delivered responsive frontends, integrated REST APIs, and optimized performance across multiple business websites.",
-  },
+const experienceHighlights = [
+  "Build and maintain REST APIs for CRM systems with NestJS, TypeScript, MySQL, and MongoDB.",
+  "Design authentication and authorization flows with JWT, OAuth, RBAC, and API versioning.",
+  "Improve high-traffic modules using Redis caching, query tuning, pagination, and indexing.",
+  "Trace production issues through logs and metrics, identify root causes, and coordinate fixes.",
+  "Contribute to Docker-based deployments and CI/CD pipelines on AWS.",
 ];
 
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-white py-24 dark:bg-slate-950">
-      <div className="mx-auto w-full max-w-6xl px-8">
-        <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr] lg:items-start">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div>
-                <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">
-                  About Me
-                </h2>
-                <h3 className="mt-2 text-3xl font-bold text-slate-900 md:text-4xl dark:text-slate-100 lg:whitespace-nowrap">
-                  Keith Vuong
-                </h3>
-              </div>
+    <section
+      id="about"
+      className="section-shell border-t border-zinc-200 bg-zinc-50/70 dark:border-zinc-800 dark:bg-zinc-950"
+    >
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-8 lg:px-10">
+        <div className="grid gap-12 lg:grid-cols-[.58fr_1.42fr] lg:gap-20">
+          <header className="lg:sticky lg:top-28 lg:self-start">
+            <p className="section-index">01 / About</p>
+            <h2 className="section-title mt-5 max-w-[8ch]">
+              I work across the seams.
+            </h2>
+            <p className="mt-6 max-w-sm text-pretty leading-7 text-zinc-600 dark:text-zinc-400">
+              Between product and engineering. Between the interface users touch
+              and the infrastructure they never need to think about.
+            </p>
+          </header>
 
-              <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-                I’m a Full-stack Developer with 2 years of experience delivering
-                high-quality websites and management systems. I focus on clean
-                code and seamless user experiences.
-              </p>
+          <div>
+            <p className="max-w-[38ch] text-pretty text-2xl font-medium leading-[1.45] tracking-[-.025em] text-zinc-900 sm:text-3xl dark:text-zinc-100">
+              I turn business requirements into software that stays
+              understandable as the product grows.
+            </p>
+            <p className="mt-7 max-w-[65ch] leading-8 text-zinc-600 dark:text-zinc-400">
+              My work covers responsive interfaces, production APIs,
+              authentication, databases, caching, and cloud delivery. I value
+              straightforward decisions, explicit trade-offs, and systems the
+              next developer can reason about.
+            </p>
 
-              {/* Stats */}
-              <div className="pt-4 flex items-center gap-6">
-                <div>
-                  <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-                    2+
+            <div className="mt-14 border-t border-zinc-300 dark:border-zinc-700">
+              {capabilities.map((item) => (
+                <article
+                  key={item.index}
+                  className="group grid gap-3 border-b border-zinc-200 py-7 sm:grid-cols-[3rem_13rem_1fr] sm:items-start dark:border-zinc-800"
+                >
+                  <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">
+                    {item.index}
+                  </span>
+                  <h3 className="font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                    {item.title}
+                  </h3>
+                  <p className="max-w-[48ch] text-sm leading-6 text-zinc-500 transition-colors duration-300 group-hover:text-zinc-700 dark:text-zinc-400 dark:group-hover:text-zinc-200">
+                    {item.detail}
                   </p>
-                  <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
-                    Years Exp
-                  </p>
-                </div>
-                <div className="h-8 w-px bg-slate-200 dark:bg-slate-700" />
-                <div>
-                  <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-                    5+
-                  </p>
-                  <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
-                    Projects
-                  </p>
-                </div>
-              </div>
+                </article>
+              ))}
             </div>
-          </div>
-
-          <div className="grid gap-8 sm:grid-cols-2">
-            {techStack.map((group) => (
-              <div key={group.category} className="space-y-4">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                  {group.category}
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-md text-sm font-medium text-slate-600 hover:border-blue-200 hover:text-blue-600 transition-colors dark:bg-slate-900 dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500/60 dark:hover:text-blue-400"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 border-t border-slate-100 pt-8 dark:border-slate-800 lg:grid-cols-2">
-          {/* EDUCATION SECTION */}
-          <section className="space-y-5">
-            <div className="flex items-center justify-between">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                Education
-              </h4>
+        <div className="mt-28 grid gap-10 border-t border-zinc-300 pt-10 lg:grid-cols-[.58fr_1.42fr] lg:gap-20 dark:border-zinc-700">
+          <div>
+            <p className="section-index">Experience</p>
+            <div className="mt-5 inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
+              <SuitcaseSimple
+                size={19}
+                weight="duotone"
+                className="text-blue-600 dark:text-blue-400"
+              />{" "}
+              Apr 2024—Present
             </div>
-            <div className="space-y-4">
-              {education.map((edu) => (
-                <article
-                  key={`${edu.school}-${edu.degree}`}
-                  className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900/60"
+          </div>
+          <article>
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+              <div>
+                <h3 className="text-2xl font-semibold tracking-[-.03em] text-zinc-950 dark:text-zinc-50">
+                  Full-stack Developer
+                </h3>
+                <p className="mt-1 text-zinc-500 dark:text-zinc-400">
+                  Sea Dragon Technology · Ho Chi Minh City
+                </p>
+              </div>
+              <a
+                href="mailto:vuong.tuankiet07979@gmail.com"
+                className="text-link"
+              >
+                Request more detail <ArrowUpRight size={15} weight="bold" />
+              </a>
+            </div>
+            <ul className="mt-8 grid gap-4">
+              {experienceHighlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="flex gap-3 border-l border-zinc-300 pl-4 text-sm leading-6 text-zinc-600 dark:border-zinc-700 dark:text-zinc-300"
                 >
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div>
-                      <p className="text-sm font-bold text-slate-900 dark:text-slate-100">
-                        {edu.degree}
-                      </p>
-                      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                        {edu.school}
-                      </p>
-                    </div>
-                    <span className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-700 dark:border-blue-500/50 dark:bg-blue-500/10 dark:text-blue-300">
-                      {edu.status}
-                    </span>
-                  </div>
-
-                  <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    {/* <span>{edu.period}</span>
-                    <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-600" /> */}
-                    <span>{edu.major}</span>
-                  </div>
-                </article>
+                  <Check
+                    size={15}
+                    weight="bold"
+                    className="mt-1 shrink-0 text-blue-600 dark:text-blue-400"
+                  />
+                  {highlight}
+                </li>
               ))}
-            </div>
-          </section>
+            </ul>
+          </article>
+        </div>
 
-          {/* EXPERIENCE SECTION */}
-          <section className="space-y-5">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400">
-              Experience
-            </h4>
-            <div className="space-y-4">
-              {experiences.map((job) => (
-                <article
-                  key={`${job.company}-${job.role}`}
-                  className="rounded-xl border border-slate-200 bg-slate-50/70 p-4 dark:border-slate-700 dark:bg-slate-900/60"
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div>
-                      <p className="text-sm font-bold text-slate-900 dark:text-slate-100">
-                        {job.role}
-                      </p>
-                      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                        {job.company}
-                      </p>
-                    </div>
-                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                      {job.type}
-                    </span>
-                  </div>
-
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                    {job.summary}
-                  </p>
-                  <p className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    {job.period}
-                  </p>
-                </article>
-              ))}
+        <div className="mt-20 grid gap-10 border-t border-zinc-200 pt-10 lg:grid-cols-[.58fr_1.42fr] lg:gap-20 dark:border-zinc-800">
+          <div>
+            <p className="section-index">Education</p>
+          </div>
+          <article className="grid gap-5 sm:grid-cols-[auto_1fr]">
+            <GraduationCap
+              size={25}
+              weight="duotone"
+              className="text-blue-600 dark:text-blue-400"
+            />
+            <div>
+              <h3 className="font-semibold text-zinc-950 dark:text-zinc-50">
+                Bachelor of Information Technology
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+                Ho Chi Minh City University of Technology and Education
+              </p>
+              <p className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400">
+                <Stack size={15} weight="bold" /> Software Engineering ·
+              </p>
             </div>
-          </section>
+          </article>
         </div>
       </div>
     </section>
