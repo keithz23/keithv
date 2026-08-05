@@ -33,13 +33,13 @@ export default function Navbar() {
           </button>
 
           <div className="hidden items-center gap-1 md:flex">
-            {links.map((link) => <button key={link.id} type="button" onClick={() => go(link.id)} aria-current={active === link.id ? "page" : undefined} className="nav-link">{link.label}<span /></button>)}
+            {links.map((link) => <button key={link.id} type="button" onClick={() => go(link.id)} aria-current={active === link.id ? "location" : undefined} className="nav-link">{link.label}<span /></button>)}
           </div>
 
           <div className="flex items-center justify-end gap-2">
-            <button type="button" onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")} aria-label="Toggle color theme" className="icon-button"><CircleHalf size={18} weight="bold" /></button>
+            <button type="button" onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")} aria-label="Toggle color theme" className="icon-button"><CircleHalf size={18} weight="regular" /></button>
             <button type="button" onClick={() => go("contact")} className="hidden h-10 items-center border border-zinc-900 px-4 text-xs font-semibold transition-all duration-300 hover:bg-zinc-900 hover:text-white active:translate-y-px sm:inline-flex dark:border-zinc-100 dark:hover:bg-zinc-100 dark:hover:text-zinc-950">Start a conversation</button>
-            <button type="button" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation" aria-expanded={open} className="icon-button md:hidden">{open ? <X size={18} weight="bold" /> : <List size={19} weight="bold" />}</button>
+            <button type="button" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation" aria-expanded={open} className="icon-button md:hidden">{open ? <X size={18} weight="regular" /> : <List size={19} weight="regular" />}</button>
           </div>
         </div>
         {open && <div className="border-t border-zinc-200 bg-white px-4 py-3 md:hidden dark:border-zinc-800 dark:bg-zinc-950">{links.map((link) => <button key={link.id} type="button" onClick={() => go(link.id)} className="flex w-full items-center justify-between border-b border-zinc-100 px-1 py-4 text-left text-sm font-medium last:border-0 dark:border-zinc-900"><span>{link.label}</span><span className="font-mono text-[10px] text-zinc-400">0{links.indexOf(link) + 1}</span></button>)}</div>}

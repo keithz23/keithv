@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowDownRight, ArrowUpRight, MapPin, TerminalWindow } from "@phosphor-icons/react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import type { MouseEvent, ReactNode } from "react";
 
 function MagneticButton({ children, onClick, secondary = false }: { children: ReactNode; onClick: () => void; secondary?: boolean }) {
@@ -9,6 +9,8 @@ function MagneticButton({ children, onClick, secondary = false }: { children: Re
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 160, damping: 18 });
   const springY = useSpring(y, { stiffness: 160, damping: 18 });
+  const visualX = useTransform(springX, (value) => value);
+  const visualY = useTransform(springY, (value) => value);
 
   const move = (event: MouseEvent<HTMLButtonElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -24,7 +26,7 @@ function MagneticButton({ children, onClick, secondary = false }: { children: Re
       onClick={onClick}
       onMouseMove={move}
       onMouseLeave={reset}
-      style={{ x: springX, y: springY }}
+      style={{ x: visualX, y: visualY }}
       className={secondary ? "button-secondary" : "button-primary"}
     >
       {children}
@@ -43,7 +45,7 @@ export default function InteractiveHero() {
         <div className="relative">
           <div className="stagger-item mb-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-zinc-500 dark:text-zinc-400">
             <span className="status-line"><span className="status-dot" /> Available for selected opportunities</span>
-            <span className="inline-flex items-center gap-1.5"><MapPin size={15} weight="bold" /> Ho Chi Minh City, Vietnam</span>
+            <span className="inline-flex items-center gap-1.5"><MapPin size={15} weight="regular" /> Ho Chi Minh City, Vietnam</span>
           </div>
 
           <p className="stagger-item section-index">Full-stack developer / 2026</p>
@@ -55,15 +57,15 @@ export default function InteractiveHero() {
           </p>
 
           <div className="stagger-item mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <MagneticButton onClick={() => go("projects")}>View selected work <ArrowDownRight size={17} weight="bold" /></MagneticButton>
-            <MagneticButton secondary onClick={() => go("contact")}>Discuss a project <ArrowUpRight size={17} weight="bold" /></MagneticButton>
+            <MagneticButton onClick={() => go("projects")}>View selected work <ArrowDownRight size={17} weight="regular" /></MagneticButton>
+            <button type="button" onClick={() => go("contact")} className="hero-text-link">Discuss a project <ArrowUpRight size={17} weight="regular" /></button>
           </div>
         </div>
 
         <aside className="stagger-item lg:mb-2 lg:border-l lg:border-zinc-200 lg:pl-8 dark:lg:border-zinc-800" aria-label="Engineering profile">
           <div className="flex items-center justify-between border-b border-zinc-200 pb-4 dark:border-zinc-800">
             <span className="section-index">Working profile</span>
-            <TerminalWindow size={21} weight="duotone" className="text-blue-600 dark:text-blue-400" />
+            <TerminalWindow size={21} weight="regular" className="text-blue-600 dark:text-blue-400" />
           </div>
           <div className="divide-y divide-zinc-200 dark:divide-zinc-800">
             <div className="py-6">

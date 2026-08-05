@@ -8,22 +8,58 @@ const projects = [
   { number: "05", title: "InventorySys", label: "Operations system", description: "An inventory system for retail and wholesale teams to track stock movement and keep day-to-day operations visible.", highlights: ["Inventory and stock tracking", "Retail and wholesale workflows", "Operational reporting"], tech: ["Java", "Spring MVC", "SQL Server", "JavaScript"], github: null, icon: Warehouse },
 ];
 
-function ProjectVisual({ project }: { project: (typeof projects)[number] }) {
-  const Icon = project.icon;
+const featuredProjects = projects.slice(0, 2);
+const archiveProjects = projects.slice(2);
+
+function BlueskyVisual() {
   return (
-    <div className="project-visual" aria-hidden="true">
-      <div className="flex items-center justify-between border-b border-zinc-200 px-5 py-3 dark:border-zinc-700">
-        <div className="flex gap-1.5"><span /><span /><span /></div>
-        <p className="font-mono text-[9px] uppercase tracking-[.18em] text-zinc-400">{project.label}</p>
-      </div>
-      <div className="grid grow grid-cols-[3.5rem_1fr]">
-        <div className="border-r border-zinc-200 p-4 dark:border-zinc-700"><Icon size={23} weight="duotone" className="text-blue-600 dark:text-blue-400" /></div>
-        <div className="flex flex-col justify-between p-5 sm:p-7">
-          <div><p className="font-mono text-[9px] uppercase tracking-[.18em] text-zinc-400">System / {project.number}</p><p className="mt-4 max-w-[13ch] text-2xl font-semibold leading-tight tracking-[-.04em] text-zinc-900 dark:text-zinc-100">{project.title}</p></div>
-          <div className="mt-10 grid grid-cols-3 gap-2"><span className="h-14 bg-zinc-200/70 dark:bg-zinc-800" /><span className="h-9 self-end bg-blue-600/15 dark:bg-blue-400/15" /><span className="h-20 self-end border border-zinc-200 dark:border-zinc-700" /></div>
+    <div className="system-canvas" aria-hidden="true">
+      <div className="system-toolbar"><div><span /><span /><span /></div><p>feed.pipeline</p></div>
+      <div className="grid grow grid-cols-[4rem_1fr]">
+        <div className="system-rail"><ChatCircleDots size={22} weight="regular" /></div>
+        <div className="p-5 sm:p-7">
+          <div className="flex items-center justify-between"><p className="system-label">Realtime feed</p><span className="status-dot" /></div>
+          <div className="mt-7 space-y-3">
+            {["Fan-out event", "Redis cache", "Socket delivery"].map((item, index) => <div key={item} className="feed-row"><span className="font-mono text-[9px] text-blue-600 dark:text-blue-400">0{index + 1}</span><span>{item}</span><span className="ml-auto h-1.5 w-12 bg-zinc-200 dark:bg-zinc-700" /></div>)}
+          </div>
+          <div className="mt-8 grid grid-cols-[1.4fr_.6fr] gap-3"><div className="h-20 border border-zinc-200 p-3 dark:border-zinc-700"><span className="block h-1.5 w-3/5 bg-blue-600/25" /><span className="mt-3 block h-1.5 w-4/5 bg-zinc-200 dark:bg-zinc-700" /><span className="mt-2 block h-1.5 w-2/5 bg-zinc-200 dark:bg-zinc-700" /></div><div className="grid place-items-center bg-blue-600 text-xs font-semibold text-white dark:bg-blue-500">LIVE</div></div>
         </div>
       </div>
     </div>
+  );
+}
+
+function CommerceVisual() {
+  return (
+    <div className="system-canvas" aria-hidden="true">
+      <div className="system-toolbar"><div><span /><span /><span /></div><p>commerce.flow</p></div>
+      <div className="p-5 sm:p-7">
+        <div className="flex items-center justify-between"><div><p className="system-label">Storefront / Admin</p><p className="mt-2 text-xl font-semibold tracking-[-.04em] text-zinc-900 dark:text-zinc-100">One typed data flow</p></div><ShoppingBagOpen size={25} weight="regular" className="text-blue-600 dark:text-blue-400" /></div>
+        <div className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+          <div className="commerce-node"><span>01</span><p>Next.js SSR</p></div><ArrowUpRight size={16} weight="regular" className="rotate-45 text-zinc-400" /><div className="commerce-node"><span>02</span><p>NestJS API</p></div>
+        </div>
+        <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+          <div className="commerce-node"><span>03</span><p>Redis cache</p></div><ArrowUpRight size={16} weight="regular" className="rotate-45 text-zinc-400" /><div className="commerce-node border-blue-600/50 dark:border-blue-400/50"><span>04</span><p>RBAC admin</p></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FeaturedProject({ project, index }: { project: (typeof projects)[number]; index: number }) {
+  return (
+    <article className={`project-case sticky ${index === 0 ? "project-stack-first" : "project-stack-second"}`}>
+      <div className="grid gap-8 lg:grid-cols-[.92fr_1.08fr] lg:gap-14">
+        {index === 0 ? <BlueskyVisual /> : <CommerceVisual />}
+        <div className="flex flex-col py-1 lg:py-4">
+          <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-start"><div><p className="section-index">Case {project.number}</p><h3 className="mt-3 text-3xl font-semibold tracking-[-.045em] text-zinc-950 sm:text-4xl dark:text-zinc-50">{project.title}</h3></div><span className="project-type">{project.label}</span></div>
+          <p className="mt-6 max-w-[58ch] leading-7 text-zinc-600 dark:text-zinc-300">{project.description}</p>
+          <ul className="mt-7 grid gap-3 sm:grid-cols-2">{project.highlights.map((highlight) => <li key={highlight} className="project-highlight"><Check size={14} weight="regular" />{highlight}</li>)}</ul>
+          <div className="tech-ledger">{project.tech.map((tech) => <span key={tech}>{tech}</span>)}</div>
+          <div className="mt-auto pt-8"><a href={project.github ?? "#"} target="_blank" rel="noreferrer" className="text-link"><Code size={16} weight="regular" /> Explore source <ArrowUpRight size={15} weight="regular" /></a></div>
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -33,26 +69,25 @@ export default function ProjectsSection() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-8 lg:px-10">
         <header className="grid gap-8 lg:grid-cols-[.58fr_1.42fr] lg:gap-20">
           <p className="section-index">02 / Selected work</p>
-          <div><h2 className="section-title max-w-[13ch]">Systems explained through decisions, not decoration.</h2><p className="mt-7 max-w-[61ch] leading-7 text-zinc-600 dark:text-zinc-400">Each project shows the product surface and the less visible engineering underneath: access control, data flow, real-time behavior, caching, and deployment.</p></div>
+          <div><h2 className="section-title max-w-[13ch]">Systems explained through decisions, not decoration.</h2><p className="mt-7 max-w-[61ch] leading-7 text-zinc-600 dark:text-zinc-400">Two deeper case studies show how product behavior connects to access control, data flow, caching, real-time delivery, and infrastructure. The remaining work stays concise below.</p></div>
         </header>
 
-        <div className="mt-20 space-y-8">
-          {projects.map((project, index) => (
-            <article key={project.title} className="project-case sticky" style={{ top: `${6.25 + index * 0.75}rem` }}>
-              <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-14">
-                <ProjectVisual project={project} />
-                <div className="flex flex-col py-1 lg:py-4">
-                  <div className="flex items-start justify-between gap-5"><div><p className="section-index">Case {project.number}</p><h3 className="mt-3 text-3xl font-semibold tracking-[-.045em] text-zinc-950 sm:text-4xl dark:text-zinc-50">{project.title}</h3></div><span className="font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400">{project.label}</span></div>
-                  <p className="mt-6 max-w-[58ch] leading-7 text-zinc-600 dark:text-zinc-300">{project.description}</p>
-                  <ul className="mt-7 grid gap-3 sm:grid-cols-2">
-                    {project.highlights.map((highlight) => <li key={highlight} className="flex gap-2.5 text-sm leading-6 text-zinc-600 dark:text-zinc-300"><Check size={14} weight="bold" className="mt-1 shrink-0 text-blue-600 dark:text-blue-400" />{highlight}</li>)}
-                  </ul>
-                  <div className="mt-8 flex flex-wrap gap-x-4 gap-y-2 border-t border-zinc-200 pt-5 dark:border-zinc-700">{project.tech.map((tech) => <span key={tech} className="font-mono text-[10px] uppercase tracking-[.12em] text-zinc-500 dark:text-zinc-400">{tech}</span>)}</div>
-                  <div className="mt-auto pt-8">{project.github ? <a href={project.github} target="_blank" rel="noreferrer" className="text-link"><Code size={16} weight="bold" /> Explore source <ArrowUpRight size={15} weight="bold" /></a> : <span className="font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400">Private repository / details on request</span>}</div>
-                </div>
-              </div>
-            </article>
-          ))}
+        <div className="mt-20 space-y-8">{featuredProjects.map((project, index) => <FeaturedProject key={project.title} project={project} index={index} />)}</div>
+
+        <div className="mt-28 grid gap-10 border-t border-zinc-300 pt-10 lg:grid-cols-[.58fr_1.42fr] lg:gap-20 dark:border-zinc-700">
+          <div><p className="section-index">Project archive</p><p className="mt-5 max-w-xs text-sm leading-6 text-zinc-500 dark:text-zinc-400">Smaller systems that broaden the range across cloud delivery, team workflows, and business operations.</p></div>
+          <div className="border-t border-zinc-300 dark:border-zinc-700">
+            {archiveProjects.map((project) => {
+              const Icon = project.icon;
+              return (
+                <article key={project.title} className="archive-row group">
+                  <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">{project.number}</span>
+                  <div><div className="flex items-center gap-3"><Icon size={19} weight="regular" className="text-zinc-400 transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" /><h3 className="font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">{project.title}</h3></div><p className="mt-2 max-w-[55ch] text-sm leading-6 text-zinc-500 dark:text-zinc-400">{project.description}</p><div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">{project.tech.map((tech) => <span key={tech} className="font-mono text-[9px] uppercase tracking-[.13em] text-zinc-400">{tech}</span>)}</div></div>
+                  <span className="project-type hidden sm:block">{project.label}</span>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

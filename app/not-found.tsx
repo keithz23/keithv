@@ -8,7 +8,7 @@ export default function NotFound() {
         <p className="section-index">404 / Route not found</p>
         <h1 className="mt-6 text-5xl font-semibold tracking-[-.055em] text-zinc-950 sm:text-7xl dark:text-zinc-50">This path leads nowhere useful.</h1>
         <p className="mt-6 max-w-lg leading-7 text-zinc-600 dark:text-zinc-400">The page may have moved, or the address may be incomplete. The portfolio is still where you left it.</p>
-        <Link href="/" className="button-primary mt-9 w-fit"><ArrowLeft size={17} weight="bold" /> Return home</Link>
+        <Link href="/" className="button-primary mt-9 w-fit"><ArrowLeft size={17} weight="regular" /> Return home</Link>
       </div>
     </main>
   );

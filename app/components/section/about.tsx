@@ -99,7 +99,7 @@ export default function AboutSection() {
             <div className="mt-5 inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
               <SuitcaseSimple
                 size={19}
-                weight="duotone"
+                weight="regular"
                 className="text-blue-600 dark:text-blue-400"
               />{" "}
               Apr 2024—Present
@@ -119,7 +119,7 @@ export default function AboutSection() {
                 href="mailto:vuong.tuankiet07979@gmail.com"
                 className="text-link"
               >
-                Request more detail <ArrowUpRight size={15} weight="bold" />
+                Request more detail <ArrowUpRight size={15} weight="regular" />
               </a>
             </div>
             <ul className="mt-8 grid gap-4">
@@ -130,7 +130,7 @@ export default function AboutSection() {
                 >
                   <Check
                     size={15}
-                    weight="bold"
+                    weight="regular"
                     className="mt-1 shrink-0 text-blue-600 dark:text-blue-400"
                   />
                   {highlight}
@@ -147,7 +147,7 @@ export default function AboutSection() {
           <article className="grid gap-5 sm:grid-cols-[auto_1fr]">
             <GraduationCap
               size={25}
-              weight="duotone"
+              weight="regular"
               className="text-blue-600 dark:text-blue-400"
             />
             <div>
@@ -158,7 +158,7 @@ export default function AboutSection() {
                 Ho Chi Minh City University of Technology and Education
               </p>
               <p className="mt-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[.16em] text-zinc-400">
-                <Stack size={15} weight="bold" /> Software Engineering ·
+                <Stack size={15} weight="regular" /> Software Engineering · 2019—2023
               </p>
             </div>
           </article>
