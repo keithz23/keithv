@@ -126,17 +126,15 @@ function BlueskyVisual() {
               "Redis cache",
               "Rekognition scan",
               "Socket delivery",
-            ].map(
-              (item, index) => (
-                <div key={item} className="feed-row">
-                  <span className="font-mono text-[9px] text-blue-600 dark:text-blue-400">
-                    0{index + 1}
-                  </span>
-                  <span>{item}</span>
-                  <span className="ml-auto h-1.5 w-12 bg-zinc-200 dark:bg-zinc-700" />
-                </div>
-              ),
-            )}
+            ].map((item, index) => (
+              <div key={item} className="feed-row">
+                <span className="font-mono text-[9px] text-blue-600 dark:text-blue-400">
+                  0{index + 1}
+                </span>
+                <span>{item}</span>
+                <span className="ml-auto h-1.5 w-12 bg-zinc-200 dark:bg-zinc-700" />
+              </div>
+            ))}
           </div>
           <div className="mt-8 grid grid-cols-[1.4fr_.6fr] gap-3">
             <div className="h-20 border border-zinc-200 p-3 dark:border-zinc-700">
