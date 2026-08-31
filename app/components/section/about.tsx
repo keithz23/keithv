@@ -34,11 +34,11 @@ const capabilities = [
 ];
 
 const experienceHighlights = [
-  "Build and maintain REST APIs for CRM systems with NestJS, TypeScript, MySQL, and MongoDB.",
+  "Manage mobile app releases for the App Store and Google Play using EAS, including build configuration, code signing, and production deployment.",
+  "Build HRM modules covering employee profiles, GPS attendance, shift scheduling, and role-based access control.",
+  "Develop CRM and internal business features with RESTful APIs using React.js/Next.js, React Native, NestJS, TypeScript, PostgreSQL, and MySQL.",
   "Design authentication and authorization flows with JWT, OAuth, RBAC, and API versioning.",
-  "Improve high-traffic modules using Redis caching, query tuning, pagination, and indexing.",
-  "Trace production issues through logs and metrics, identify root causes, and coordinate fixes.",
-  "Contribute to Docker-based deployments and CI/CD pipelines on AWS.",
+  "Optimize application performance through Redis caching, query tuning, pagination, and database indexing.",
 ];
 
 export default function AboutSection() {
